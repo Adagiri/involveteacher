@@ -63,7 +63,7 @@ const RegisterForm = ({ authToggle }) => {
             control={Select}
             options={options}
             placeholder='Country code'
-            width={8}
+            width={4}
           />
 
               <Form.Input
