@@ -10,7 +10,7 @@ export function* setSignUpStart({payload}) {
   try{
     const data = yield axios({
       method: 'post',
-      url: 'http://api.involveteacher.space/v2/register',
+      url: 'https://api.involveteacher.space/v2/register',
       data: payload
     })
 
@@ -40,7 +40,7 @@ export function* setSignInStart({payload}) {
   try{
     const data = yield axios({
       method: 'post',
-      url: 'http://api.involveteacher.space/v2/login',
+      url: 'https://api.involveteacher.space/v2/login',
       data: payload
     });
 
