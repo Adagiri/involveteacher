@@ -1,10 +1,32 @@
-import React from 'react';
-import { Label } from 'semantic-ui-react';
+import React from "react";
+import { Label, Button } from "semantic-ui-react";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { signOutStart } from "../../redux/auth/auth.actions";
 
-const Dashboard = () => {
-    return (
-     <Label>Dashboard</Label>
-    );
-}
+const Dashboard = ({ history, signOutStart }) => {
 
-export default Dashboard;
+  const handleSignOut = () => {
+  signOutStart();
+  setTimeout(() =>  history.push("/signin"), 500)
+  
+
+  }
+  return (
+    <div>
+      <Label>Dashboard</Label>
+      <Button
+        color="orange"
+        onClick={
+           
+          handleSignOut
+        
+        }
+      >
+        log out
+      </Button>
+    </div>
+  );
+};
+
+export default connect(null, { signOutStart })(withRouter(Dashboard));

@@ -18,8 +18,8 @@ import {
 
 const BackgroundImage = props => (
   <div>
-  <ContextContainer><Context>{props.children}</Context></ContextContainer>
     <Area>
+    <ContextContainer><Context>{props.children}</Context></ContextContainer>
       <Circles>
         <FirstCircle />
         <SecondCircle />

@@ -58,7 +58,8 @@ top: 0;
   background: #09203f;
   background: -webkit-linear-gradient(to left, #537895, #0c356b71);
   width: 100%;
-  min-height: 100vh;
+  min-height: 100%;
+  padding: 30px 0;
 `;
 
 export const Circles = styled.ul`

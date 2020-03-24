@@ -1,5 +1,4 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   Form,
@@ -9,27 +8,146 @@ import {
   Message,
   Segment,
   Item,
-  Dropdown,
-  Select,
-  Flag
+  Modal
 } from "semantic-ui-react";
-import { authToggle } from "../../redux/auth/auth.actions";
+import {
+  authToggle,
+  setLoading,
+  setErrors,
+  signUpStart,
+  setModal
+} from "../../redux/auth/auth.actions";
 import { connect } from "react-redux";
+import PhoneInput from "react-phone-number-input";
+import "react-phone-number-input/style.css";
+import { isValidPhoneNumber } from "react-phone-number-input";
+import flags from "react-phone-number-input/flags";
+import {
+  loading,
+  error_messages,
+  set_modal
+} from "../../redux/auth/auth.selectors";
+import { createStructuredSelector } from "reselect";
+import { withRouter } from "react-router-dom";
 
-const RegisterForm = ({ authToggle }) => {
-  const options = [
-    { key: "234", icon: <Flag name="ng" />, text: "234", value:234 },
-    { key: "233", icon: <Flag name="gh" />, text: "233", value: 233 },
-    { key: "220", icon: <Flag name="gm" />, text: "220", value: 220 },
-    { key: "231", icon: <Flag name="lr" />, text: "231", value: 231 },
-    { key: "232", icon: <Flag name="sl" />, text: "232", value: 232 }
-  ];
+const RegisterForm = ({
+  authToggle,
+  loading,
+  setLoading,
+  setErrors,
+  error_messages,
+  signUpStart,
+  setModal,
+  set_modal,
+  history
+}) => {
+  const [credentials, setCredentials] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: ""
+  });
 
-  // const options = [
-  //   { key: 'm', text: 'Male', value: 'male' },
-  //   { key: 'f', text: 'Female', value: 'female' },
-  //   { key: 'o', text: 'Other', value: 'other' },
-  // ]
+  const [phone, setPhone] = useState();
+
+  const { email, password, confirmPassword, username } = credentials;
+
+  //Error__Handling__Start
+  const isFormValid = () => {
+    let errors = [];
+    let error;
+    if (isFormEmpty(credentials, phone)) {
+      error = { message: "Fill in all fields" };
+      setErrors([...errors, error]);
+      return false;
+    } else if (!isNameValid(credentials)) {
+      error = { message: "Username is too long" };
+      setErrors([...errors, error]);
+      return false;
+    } else if (!isPasswordValid(credentials)) {
+      error = { message: "Invalid password" };
+      setErrors([...errors, error]);
+      return false;
+    } else if (!isPhoneValid(phone)) {
+      error = { message: "Phone number is invalid" };
+      setErrors([...errors, error]);
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  const isFormEmpty = (
+    { username, email, password, confirmPassword },
+    phone
+  ) => {
+    return (
+      !username.length ||
+      !email.length ||
+      !password.length ||
+      !confirmPassword.length ||
+      !phone
+    );
+  };
+
+  const isPasswordValid = ({ confirmPassword, password }) => {
+    if (password.length < 6 || confirmPassword.length < 6) {
+      return false;
+    } else if (password !== confirmPassword) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  const isPhoneValid = phone => {
+    if (isValidPhoneNumber(phone)) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const isNameValid = ({ username }) => {
+    if (username.length > 15) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
+  //Error__Handling__End
+
+  //Submit__Form__Handler
+  const handleSubmit = e => {
+    e.preventDefault();
+    setTimeout(() => {
+      if (isFormValid()) {
+        setErrors([]);
+        setLoading(true);
+        signUpStart({ name: username, email, password, phone });
+      } else {
+        setLoading(false);
+      }
+    }, 1000);
+  };
+
+  //Input__Change__Handler
+  const handleChange = e => {
+    const { name, value } = e.target;
+    setCredentials({ ...credentials, [name]: value });
+  };
+
+  //Display__And__Handle__Error__Sections
+
+  const handleInputError = (errors, inputName) => {
+    return errors.some(error => error.message.toLowerCase().includes(inputName))
+      ? "error"
+      : "";
+  };
+  const displayError = errors =>
+    errors.map((error, i) => <p key={i}>{error.message}</p>);
+
   return (
     <Grid
       textAlign="center"
@@ -41,13 +159,18 @@ const RegisterForm = ({ authToggle }) => {
           <Icon name="signup" size="big" style={{ color: "orange" }} /> Create
           an Account
         </Header>
-        <Form size="large">
+        <Form size="large" onSubmit={handleSubmit}>
           <Segment stacked style={{ background: "rgba(255, 255, 255, 0.2)" }}>
             <Form.Input
               fluid
               icon="user"
               iconPosition="left"
               placeholder="Username"
+              name="username"
+              value={username}
+              onChange={handleChange}
+              required
+              className={handleInputError(error_messages, "username")}
             />
 
             <Form.Input
@@ -55,26 +178,13 @@ const RegisterForm = ({ authToggle }) => {
               icon="mail"
               iconPosition="left"
               placeholder="Email Address"
-              type="password"
+              type="email"
+              name="email"
+              value={email}
+              onChange={handleChange}
+              required
+              className={handleInputError(error_messages, "email")}
             />
-
-            <Form.Group>
-            <Form.Field
-            control={Select}
-            options={options}
-            placeholder='Country code'
-            width={4}
-          />
-
-              <Form.Input
-                fluid
-                icon="phone"
-                iconPosition="left"
-                placeholder="Phone "
-                type="phone"
-                width={12}
-              />
-            </Form.Group>
 
             <Form.Input
               fluid
@@ -82,6 +192,11 @@ const RegisterForm = ({ authToggle }) => {
               iconPosition="left"
               placeholder="Password"
               type="password"
+              name="password"
+              value={password}
+              onChange={handleChange}
+              required
+              className={handleInputError(error_messages, "password")}
             />
 
             <Form.Input
@@ -90,6 +205,22 @@ const RegisterForm = ({ authToggle }) => {
               iconPosition="left"
               placeholder="Password Confirmation"
               type="password"
+              name="confirmPassword"
+              value={confirmPassword}
+              onChange={handleChange}
+              required
+              className={handleInputError(error_messages, "password")}
+            />
+
+            <PhoneInput
+              flags={flags}
+              style={{ marginBottom: "13px", color: "red" }}
+              placeholder="Enter phone number"
+              value={phone}
+              onChange={setPhone}
+              defaultCountry="NG"
+              required
+              className={handleInputError(error_messages, "phone")}
             />
 
             <Button
@@ -97,11 +228,19 @@ const RegisterForm = ({ authToggle }) => {
               style={{ color: "white" }}
               size="large"
               fluid
+              loading={loading}
+              disabled={loading}
             >
               Register
             </Button>
           </Segment>
         </Form>
+        {error_messages.length > 0 && (
+          <Message error className="animated shake fast">
+            <h3>Error</h3>
+            {displayError(error_messages)}
+          </Message>
+        )}
         <Message
           as="h2"
           style={{ background: "rgba(255, 255, 255, 0.2)", color: "white" }}
@@ -116,13 +255,55 @@ const RegisterForm = ({ authToggle }) => {
             Login
           </Item>
         </Message>
+        <Modal
+          dimmer="blurring"
+          size="mini"
+          open={set_modal}
+          onClose={() => setModal(false)}
+          closeOnDimmerClick={false}
+          closeOnEscape={false}
+          style={{ backgroundColor: "blue" }}
+        >
+          <Modal.Header style={{ backgroundColor: "#09203f", color: "white" }}>
+            Registration Successful
+          </Modal.Header>
+          <Modal.Content style={{ backgroundColor: "#09203f", color: "white" }}>
+            <p>Please click below to dashboard</p>
+          </Modal.Content>
+          <Modal.Actions style={{ backgroundColor: "#09203f", color: "white" }}>
+            <Button
+              style={{ backgroundColor: "teal", color: "white" }}
+              positive
+              icon="checkmark"
+              labelPosition="right"
+              content="Yes"
+              onClick={() => {
+                history.push("/dashboard");
+                setModal(false);
+              }}
+            />
+          </Modal.Actions>
+        </Modal>
       </Grid.Column>
     </Grid>
   );
 };
 
 const mapDispatchToProps = dispatch => ({
-  authToggle: obj => dispatch(authToggle(obj))
+  authToggle: obj => dispatch(authToggle(obj)),
+  setLoading: obj => dispatch(setLoading(obj)),
+  setErrors: str => dispatch(setErrors(str)),
+  signUpStart: obj => dispatch(signUpStart(obj)),
+  setModal: obj => dispatch(setModal(obj))
 });
 
-export default connect(null, mapDispatchToProps)(RegisterForm);
+const mapStateToProps = createStructuredSelector({
+  loading: loading,
+  error_messages: error_messages,
+  set_modal: set_modal
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withRouter(RegisterForm));

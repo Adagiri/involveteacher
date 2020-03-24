@@ -1,6 +1,50 @@
 import AuthActionTypes from "./auth.types";
 
-export const authToggle = (bool) => ({
+export const authToggle = (payload) => ({
     type: AuthActionTypes.AUTH_TOGGLE,
-    payload: bool
+    payload
+});
+
+export const setLoading = (payload) => ({
+    type: AuthActionTypes.LOADING,
+    payload
+});
+
+export const setErrors = (payload) => ({
+    type: AuthActionTypes.SET_ERROR,
+    payload
+});
+
+export const signUpStart = (payload) => ({
+    type: AuthActionTypes.SIGN_UP_START,
+    payload
+});
+
+export const signUpSuccess = (payload) => ({
+    type: AuthActionTypes.SIGN_UP_SUCCESS,
+    payload
+});
+
+export const signInStart = payload => ({
+    type: AuthActionTypes.SIGN_IN_START,
+    payload
+});
+
+export const signInSuccess = payload => ({
+    type: AuthActionTypes.SIGN_IN_SUCCESS,
+    payload
+});
+
+
+export const setModal = (payload) => ({
+    type: AuthActionTypes.SET_MODAL,
+    payload
+});
+
+export const signOutStart = () => ({
+type: AuthActionTypes.SIGN_OUT_START
+});
+
+export const signOutSuccess = () => ({
+    type: AuthActionTypes.SIGN_OUT_SUCCESS
 });

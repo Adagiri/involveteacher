@@ -12,3 +12,7 @@ sagaMiddleware.run(root_saga);
 export const persistor = persistStore(store);
 
 export default {persistor, store};
+
+// , {
+//     transforms: [authFilter]
+// }
