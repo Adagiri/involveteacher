@@ -16,17 +16,16 @@ export function* setSignUpStart({payload}) {
 
     
     const object = data.data.data;
-    console.log(data.data.data)
+    console.log(data)
     yield localStorage.setItem('user', JSON.stringify(object) );
     yield localStorage.setItem('token', data.data.data.token);
     yield put(signUpSuccess(data.data.data));
     yield put(setModal(true));
     yield put(setLoading(false));
-  
   }
   catch (err) {
-      // yield put(setErrors([{message: err}]));
-      console.log(err)
+      yield put(setErrors([{message: "Invalid email or no internet connection"}]));
+      
       yield put(setLoading(false));
   };
 
