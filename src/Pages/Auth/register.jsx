@@ -121,9 +121,10 @@ const RegisterForm = ({
   //Submit__Form__Handler
   const handleSubmit = e => {
     e.preventDefault();
+    setErrors([]);
     setTimeout(() => {
       if (isFormValid()) {
-        setErrors([]);
+        
         setLoading(true);
         signUpStart({ name: username, email, password, phone });
       } else {

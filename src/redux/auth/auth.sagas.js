@@ -13,18 +13,22 @@ export function* setSignUpStart({payload}) {
       url: 'https://api.involveteacher.space/v2/register',
       data: payload
     })
-
+console.log(data)
+    if (data) {
+      console.log(data)
+      const object = data.data.data;
+      console.log(data)
+      yield localStorage.setItem('user', JSON.stringify(object) );
+      yield localStorage.setItem('token', data.data.data.token);
+      yield put(signUpSuccess(data.data.data));
+      yield put(setModal(true));
+      yield put(setLoading(false));
+    }
     
-    const object = data.data.data;
-    console.log(data)
-    yield localStorage.setItem('user', JSON.stringify(object) );
-    yield localStorage.setItem('token', data.data.data.token);
-    yield put(signUpSuccess(data.data.data));
-    yield put(setModal(true));
-    yield put(setLoading(false));
+    
   }
   catch (err) {
-      yield put(setErrors([{message: "Invalid email or no internet connection"}]));
+      yield put(setErrors([{message: err.message + " or invalid email"}]));
       
       yield put(setLoading(false));
   };
