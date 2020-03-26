@@ -6,17 +6,23 @@ import Dashboard from "./Pages/Dashboard/dashboard";
 import { createStructuredSelector } from "reselect";
 import { connect } from "react-redux";
 import { user } from "./redux/auth/auth.selectors";
+import Header from "./components/Header/header";
+import Help from "./Pages/Help/help";
+import Careers from "./Pages/Careers/careers";
 
 const App = ({user}) => {
   const token = localStorage.getItem('token');
   return (
     <div>
+    <Header />
       <Switch>
       <Route path="/" exact component={HomePage} />
       <Route path="/signin"  render = {() => token ? <Redirect to="/dashboard" /> : <Auth />} />
       <Route path="/dashboard" component={Dashboard}
 
       />
+      <Route path="/help" component={Help} />
+   <Route path="/careers" component={Careers} />
       </Switch>
     </div>
   );

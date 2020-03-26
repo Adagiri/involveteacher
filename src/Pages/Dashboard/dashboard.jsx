@@ -13,7 +13,7 @@ const Dashboard = ({ history, signOutStart }) => {
 
   }
   return (
-    <div>
+    <div style={{marginTop: "4rem"}}>
       <Label>Dashboard</Label>
       <Button
         color="orange"

@@ -1,11 +1,25 @@
-import React from 'react';
-import BackgroundImage from '../../Utils/BackgroundImage/backgroundImage';
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+import {
+  Button,
+  Container,
+  Divider,
+  Grid,
+  Header,
+  Icon,
+  Image,
+  List,
+  Menu,
+  Responsive,
+  Segment,
+  Sidebar,
+  Visibility,
+} from 'semantic-ui-react'
+import  TopHeader  from "../../components/Header/header";
 
-const HomePage = () => {
+const HomepageLayout = () => (
+<TopHeader />
+)
 
-    return (
-        <BackgroundImage />
-    )
-}
 
-export default HomePage;
+export default HomepageLayout
