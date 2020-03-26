@@ -19,13 +19,13 @@ const Header = ({history}) => {
           Involve Teacher
            
           </Menu.Item>
-          <Menu.Item as='a'><Link to="/signin">Sign In</Link></Menu.Item>
+          <Menu.Item as='a' onClick={() => history.push("/signin")}>Sign In</Menu.Item>
         
           <Dropdown item simple text='Dashboard'>
             <Dropdown.Menu>
             <Dropdown.Item onClick={()=> history.push("/dashboard")}>Your profile</Dropdown.Item>
-              <Dropdown.Item>Help</Dropdown.Item>
-              <Dropdown.Item>Careers</Dropdown.Item>
+              <Dropdown.Item onClick={()=> history.push("/help")}>Help</Dropdown.Item>
+              <Dropdown.Item onClick={() => history.push("/careers")}>Careers</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
         </Container>

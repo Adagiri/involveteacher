@@ -13,7 +13,7 @@ const Dashboard = ({ history, signOutStart }) => {
 
   }
   return (
-    <div style={{marginTop: "4rem"}}>
+    <div style={{marginTop: "60px"}} className="fadeIn fast animated">
       <Label>Dashboard</Label>
       <Button
         color="orange"

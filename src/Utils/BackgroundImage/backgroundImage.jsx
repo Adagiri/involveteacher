@@ -17,7 +17,7 @@ import {
 } from "./background.styles";
 
 const BackgroundImage = props => (
-  <div>
+  <div style={{marginTop: "60px"}}>
     <Area>
     <ContextContainer><Context>{props.children}</Context></ContextContainer>
       <Circles>
