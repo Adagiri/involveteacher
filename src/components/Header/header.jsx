@@ -10,12 +10,12 @@ import { Link, withRouter } from 'react-router-dom'
 
 const Header = ({history}) => {
     return (
-        <div>
+        <div style={{marginBottom: "61px"}}>
         <Menu fixed='top' inverted>
         <Container>
         
           <Menu.Item as='a' header onClick={() => history.push("/")}>
-          <Image size='mini' src='/itlogo.png' style={{ marginRight: '1.5em' }} />
+          <Image size='mini' src='/Images/itlogo.png' style={{ marginRight: '1.5em' }} />
           Involve Teacher
            
           </Menu.Item>

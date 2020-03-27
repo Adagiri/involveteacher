@@ -33,7 +33,7 @@ const circleConstant = css`
   display: block;
   list-style: none;
   background: rgba(255, 255, 255, 0.2);
-  animation: ${keyFrames} 10s linear infinite;
+  animation: ${keyFrames} 5s linear infinite;
   bottom: -150px;
 `;
 //utils
@@ -54,12 +54,13 @@ export const Context = styled.div`
 
 export const Area = styled.div`
 position: absolute;
-top: 0;
+top: 61px;
   background: #09203f;
   background: -webkit-linear-gradient(to left, #537895, #0c356b71);
   width: 100%;
-  min-height: 100%;
+  min-height: 100vh;
   padding: 30px 0;
+ 
 `;
 
 export const Circles = styled.ul`

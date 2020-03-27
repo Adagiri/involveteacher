@@ -3,6 +3,7 @@ import { Label, Button } from "semantic-ui-react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { signOutStart } from "../../redux/auth/auth.actions";
+import Header from "../../components/Header/header";
 
 const Dashboard = ({ history, signOutStart }) => {
 
@@ -13,7 +14,8 @@ const Dashboard = ({ history, signOutStart }) => {
 
   }
   return (
-    <div style={{marginTop: "60px"}} className="fadeIn fast animated">
+    <div  className="fadeIn fast animated">
+    <Header />
       <Label>Dashboard</Label>
       <Button
         color="orange"

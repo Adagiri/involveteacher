@@ -1,4 +1,5 @@
 import React from "react";
+import Header from "../../components/Header/header";
 import {
   ContextContainer,
   Context,
@@ -17,7 +18,7 @@ import {
 } from "./background.styles";
 
 const BackgroundImage = props => (
-  <div style={{marginTop: "60px"}}>
+  
     <Area>
     <ContextContainer><Context>{props.children}</Context></ContextContainer>
       <Circles>
@@ -33,7 +34,7 @@ const BackgroundImage = props => (
         <TenthCircle />
       </Circles>
     </Area>
-  </div>
+  
 );
 
 export default BackgroundImage;
