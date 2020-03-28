@@ -54,17 +54,7 @@ style={{
   // color: "black"
 }}
 />
-<Button color="teal" size='huge'
-onClick={() => history.push("/signin")}
-style={{
-  textAlign: "center",
-  zIndex: "50"
-  // color: "black"
-}}
->
-Get Started
-<Icon name='right arrow' />
-</Button>
+
 </div>
 
 <Image src="/Images/interface.svg" fluid  centered style={{position: "absolute", top: "50px", height: "100%" , width: "100vw", zIndex: "1", }} />
