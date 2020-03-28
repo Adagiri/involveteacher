@@ -154,6 +154,7 @@ const RegisterForm = ({
       textAlign="center"
       verticalAlign="middle"
       className="animated  bounceInDown  fast"
+      style={{ zIndex: "50", minWidth: "50%"}}
     >
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as="h2" style={{ color: "white" }} textAlign="center">

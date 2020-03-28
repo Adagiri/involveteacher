@@ -71,10 +71,11 @@ const LoginForm = ({
       textAlign="center"
       verticalAlign="middle"
       className="animated bounceInDown fast"
+      style={{ zIndex: "50", minWidth: "50%"}}
     >
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as="h2" style={{ color: "white" }} textAlign="center">
-          <Icon name="sign in" size="big" style={{ color: "orange" }} /> Log-in
+          <Icon name="sign in" size="big" style={{ color: "orange",  }} /> Log-in
           to Dashboard
         </Header>
         <Form size="large" onSubmit={handleSubmit}>

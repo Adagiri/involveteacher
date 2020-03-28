@@ -1,4 +1,3 @@
-import {Button} from "semantic-ui-react";
 import styled, { css, keyframes } from "styled-components";
 
 //utils
@@ -9,7 +8,7 @@ from{
     transform: translateY(0) rotate(0deg);
     opacity: 1;
     border-radius: 100px;
-   top: 130vh;
+   top: 1000vh;
 }
 
 to{
@@ -29,7 +28,7 @@ const circleConstant = css`
   animation: ${keyFrames} 5s linear infinite;
   bottom: -150px;
   border-radius: 100%
-  z-index: 5;
+  z-index: 50;
 `;
 
 export const Circles = styled.ul`
@@ -37,9 +36,9 @@ position: absolute;
 top: 0;
 left: 0;
 width: 100%;
-min-height: 100vh;
+min-height: 300vh;
 overflow: hidden;
-z-index: 5;
+z-index: 50;
 `;
 
 export const FirstCircle = styled.li`
@@ -135,14 +134,4 @@ height: 150px;
 animation-delay: 0s;
 animation-duration: 11s;
 background: red;
-`;
-
-
-export const CustomButton = styled(Button)`
-   background-color: #4e54c8,
-   color: white;
-
-   &:hover {
-    background: #8f94fb;
-   }
 `;

@@ -3,12 +3,32 @@ import "./homepage.css";
 import BackgroundImage from "../../Utils/BackgroundImage/backgroundImage";
 import { Link, withRouter } from 'react-router-dom';
 import { Image, Header, Button, Icon, Container, List, Divider, Grid, Segment, Menu, Card } from "semantic-ui-react";
+import ScrollAnimation from 'react-animate-on-scroll';
+import {
+  ContextContainer,
+  Context,
+  Area,
+  Circles,
+  FirstCircle,
+  SecondCircle,
+  ThirdCircle,
+  FourthCircle,
+  FifthCircle,
+  SixthCircle,
+  SeventhCircle,
+  EightCircle,
+  NinthCircle,
+  TenthCircle
+} from "./homepage.styles";
+
+
 
     const HomePage = ({history}) => {
       return (
         <div  style={{background: "#09203f", zIndex: "3"}}>
 <div style={{height: "100vh", width: "100vw" }}>
-<div style={{position: "absolute", left: "0", top: "50px", width: "100vw", height: "100vh", zIndex: "2", background: "teal", opacity: "0.9", display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
+<div style={{position: "absolute", left: "0", top: "50px", width: "100vw", height: "100vh", zIndex: "2", background: "teal", opacity: "0.4" }} />
+<div style={{position: "absolute", left: "0", top: "50px", width: "100vw", height: "100vh", zIndex: "100", display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
 <Header
 as='h1'
 content='Involve Teacher'
@@ -18,6 +38,8 @@ style={{
   fontWeight: 'normal',
   marginBottom: 0,
   marginTop:  '3rem',
+  textAlign: "center",
+  // color: "black"
 }}
 />
 <Header
@@ -28,29 +50,34 @@ style={{
   fontSize:  '1.7rem',
   fontWeight: 'normal',
   marginTop:'1.5rem',
+  textAlign: "center",
+  // color: "black"
 }}
 />
 <Button color="orange" size='huge'
 onClick={() => history.push("/signin")}
+style={{
+  textAlign: "center",
+  zIndex: "50"
+  // color: "black"
+}}
 >
 Get Started
 <Icon name='right arrow' />
 </Button>
 </div>
-<Image src="/Images/interface.svg" fluid  centered style={{position: "absolute", top: "50px", height: "100vh" , width: "100vw", zIndex: "1", }} />
+
+<Image src="/Images/interface.svg" fluid  centered style={{position: "absolute", top: "50px", height: "100%" , width: "100vw", zIndex: "1", }} />
 </div>
 
-
-
-
-
-
-
+<ScrollAnimation animateIn='zoomIn'
+  animateOut='zoomOut' duration={1}> 
 <div className="container mt-4" style={{ background: "#09203f" }}>
 <div className="row">
 
 <div className="card-columns">
-
+<ScrollAnimation animateIn='zoomInLeft'
+  animateOut='zoomOutLeft' duration={1}>
 <Card
 image='/Images/feature1.jpg'
 header='Smart Teacher'
@@ -60,8 +87,10 @@ centered
 fluid
 style={{maxWidth: "95%", fontSize: "1.2rem", fontWeight: "500"}}
 />
+</ ScrollAnimation>
 
-
+<ScrollAnimation animateIn='zoomInUp'
+  animateOut='zoomOutDown' duration={1}>
 <Card
 // image='/Images/feature1.jpg'
 // header='Smart Teacher'
@@ -71,7 +100,7 @@ centered
 fluid
 style={{maxWidth: "95%", fontSize: "1.2rem", fontWeight: "500"}}
 />
-
+</ScrollAnimation>
 
 <Card
 image='/Images/feature2.jpg'
@@ -83,6 +112,9 @@ fluid
 style={{maxWidth: "95%", fontSize: "1.2rem", fontWeight: "500"}}
 />
 
+
+<ScrollAnimation animateIn='zoomInDown'
+  animateOut='zoomOutUp' duration={1}>
 <Card
 meta='InvolveTeach'
 description='With InvolveTeacher, teachers do not need to outsource any resource to teach students. InvolveTeacher contains all content needed.'
@@ -92,6 +124,11 @@ color="teal"
 style={{maxWidth: "95%", fontSize: "1.2rem", fontWeight: "500" }}
 />
 
+</ScrollAnimation>
+
+
+<ScrollAnimation animateIn='zoomInRight'
+  animateOut='zoomOutRight' duration={1}>
 <Card
 image='/Images/feature3.jpg'
 header='Flexibility'
@@ -101,6 +138,11 @@ centered
 fluid
 style={{maxWidth: "95%", fontSize: "1.2rem", fontWeight: "500"}}
 />
+</ScrollAnimation>
+
+
+<ScrollAnimation animateIn='zoomInUp'
+  animateOut='zoomOutDown' duration={1}>
 <Card
 // image='/Images/feature1.jpg'
 // header='Smart Teacher'
@@ -110,10 +152,14 @@ centered
 fluid
 style={{maxWidth: "95%", fontSize: "1.2rem", fontWeight: "500"}}
 />
+</ScrollAnimation>
 </div>
 </div>
 </div>
+</ScrollAnimation>
 
+<ScrollAnimation animateIn='fadeIn'
+  animateOut='fadeOut' duration={2}> 
 <Segment inverted size="tiny" textAlign='center' fluid style={{ margin: '5em 0em 0em', padding: '5em 0em', background: "rgba(255, 255, 255, 0.2)",  }} vertical>
 <div className="container">
   <blockquote className="blockquote text-center mb-0">
@@ -128,10 +174,11 @@ style={{maxWidth: "95%", fontSize: "1.2rem", fontWeight: "500"}}
 </div>
 </Segment>
 
+</ScrollAnimation> 
 
 
-
-
+<ScrollAnimation animateIn='fadeIn'
+  animateOut='fadeOut' duration={2}> 
 <Segment inverted style={{ margin: '5em 0em 0em', padding: '5em 0em' }} vertical>
           <Container textAlign='center'>
             <Grid columns={3} divided stackable inverted>
@@ -149,7 +196,7 @@ style={{maxWidth: "95%", fontSize: "1.2rem", fontWeight: "500"}}
                   <Header inverted as='h4' content='Contact' />
                   <List link inverted>
                     <List.Item as='a' href="mailto:sales@landy.com">admin@involveteacher.space</List.Item>
-                    <List.Item as='a' href="tel:+234 803 729 6906" >+234 803 729 6906</List.Item>
+                    <List.Item as='a' href="tel:+234 803 729 6906" >+234 803 911 4740</List.Item>
                     <List.Item as='a'>Our Ghost Town</List.Item>
                   </List>
                 </Grid.Column>
@@ -206,6 +253,19 @@ style={{maxWidth: "95%", fontSize: "1.2rem", fontWeight: "500"}}
             </List>
           </Container>
         </Segment>
+        </ScrollAnimation> 
+        <Circles>
+        <FirstCircle />
+        <SecondCircle />
+        <ThirdCircle />
+        <FourthCircle />
+        <FifthCircle />
+        <SixthCircle />
+        <SeventhCircle />
+        <EightCircle />
+        <NinthCircle />
+        <TenthCircle />
+      </Circles>
 </div> 
 
       )
