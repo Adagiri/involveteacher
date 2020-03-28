@@ -54,7 +54,7 @@ style={{
   // color: "black"
 }}
 />
-<Button color="orange" size='huge'
+<Button color="teal" size='huge'
 onClick={() => history.push("/signin")}
 style={{
   textAlign: "center",
