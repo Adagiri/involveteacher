@@ -4,6 +4,7 @@ import BackgroundImage from "../../Utils/BackgroundImage/backgroundImage";
 import { Link, withRouter } from 'react-router-dom';
 import { Image, Header, Button, Icon, Container, List, Divider, Grid, Segment, Menu, Card } from "semantic-ui-react";
 import ScrollAnimation from 'react-animate-on-scroll';
+import HeaderContainer from "../../components/Header/header";
 import {
   ContextContainer,
   Context,
@@ -26,6 +27,7 @@ import {
     const HomePage = ({history}) => {
       return (
         <div  style={{background: "#09203f", zIndex: "3"}}>
+        <HeaderContainer />
 <div style={{height: "100vh", width: "100vw" }}>
 <div style={{position: "absolute", left: "0", top: "50px", width: "100vw", height: "100vh", zIndex: "2", background: "teal", opacity: "0.4" }} />
 <div style={{position: "absolute", left: "0", top: "50px", width: "100vw", height: "100vh", zIndex: "100", display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
@@ -150,7 +152,7 @@ style={{maxWidth: "95%", fontSize: "1.2rem", fontWeight: "500"}}
 
 <ScrollAnimation animateIn='fadeIn'
   animateOut='fadeOut' duration={2}> 
-<Segment inverted size="tiny" textAlign='center' fluid style={{ margin: '5em 0em 0em', padding: '5em 0em', background: "rgba(255, 255, 255, 0.2)",  }} vertical>
+<Segment inverted size="tiny" textAlign='center' fluid="true" style={{ margin: '5em 0em 0em', padding: '5em 0em', background: "rgba(255, 255, 255, 0.2)",  }} vertical>
 <div className="container">
   <blockquote className="blockquote text-center mb-0">
     <svg className="lnr text-light quote-icon pull-left">

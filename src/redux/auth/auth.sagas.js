@@ -2,34 +2,28 @@ import { takeLatest, all, call, put } from "redux-saga/effects";
 import AuthActionTypes from "./auth.types";
 import axios from "axios";
 import { setErrors, signUpSuccess, setLoading, setModal, signInSuccess, signOutSuccess } from "./auth.actions";
+import { registerUser } from "./auth.utils"
 
 
 //AuthToggle__Start
 export function* setSignUpStart({payload}) {
-
+ 
   try{
-    const data = yield axios({
-      method: 'post',
-      url: 'https://api.involveteacher.space/v2/register',
-      data: payload
-    })
-console.log(data)
-    if (data) {
-      console.log(data)
-      const object = data.data.data;
-      console.log(data)
-      yield localStorage.setItem('user', JSON.stringify(object) );
-      yield localStorage.setItem('token', data.data.data.token);
-      yield put(signUpSuccess(data.data.data));
-      yield put(setModal(true));
-      yield put(setLoading(false));
-    }
+    const data = yield registerUser(payload)
+     
+      yield console.log(data);
+      // yield localStorage.setItem('user', JSON.stringify(object) );
+      // yield localStorage.setItem('token', data.data.data.token);
+      // yield put(signUpSuccess(data));
+      // yield put(setModal(true));
+      // yield put(setLoading(false));
+   
     
     
   }
   catch (err) {
-      yield put(setErrors([{message: err.message + " or invalid email"}]));
-      
+      yield put(setErrors([{message: err.message }]));
+      console.log(err)
       yield put(setLoading(false));
   };
 

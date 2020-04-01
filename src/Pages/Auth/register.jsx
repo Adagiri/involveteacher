@@ -109,7 +109,7 @@ const RegisterForm = ({
   };
 
   const isNameValid = ({ username }) => {
-    if (username.length > 15) {
+    if (username.length > 50) {
       return false;
     } else {
       return true;
@@ -167,7 +167,7 @@ const RegisterForm = ({
               fluid
               icon="user"
               iconPosition="left"
-              placeholder="Username"
+              placeholder="Full name"
               name="username"
               value={username}
               onChange={handleChange}
@@ -257,6 +257,7 @@ const RegisterForm = ({
             Login
           </Item>
         </Message>
+     
         <Modal
           dimmer="blurring"
           size="mini"
@@ -264,13 +265,15 @@ const RegisterForm = ({
           onClose={() => setModal(false)}
           closeOnDimmerClick={false}
           closeOnEscape={false}
-          style={{ backgroundColor: "blue" }}
+          fluid
+          centered
+          style={{background: "transparent", display: "flex", justifyContent: "center", alignItems: "center"  }}
         >
           <Modal.Header style={{ backgroundColor: "#09203f", color: "white" }}>
             Registration Successful
           </Modal.Header>
           <Modal.Content style={{ backgroundColor: "#09203f", color: "white" }}>
-            <p>Please click below to dashboard</p>
+            <p>Go to dashboard</p>
           </Modal.Content>
           <Modal.Actions style={{ backgroundColor: "#09203f", color: "white" }}>
             <Button
@@ -286,6 +289,7 @@ const RegisterForm = ({
             />
           </Modal.Actions>
         </Modal>
+        
       </Grid.Column>
     </Grid>
   );

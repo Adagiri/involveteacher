@@ -9,16 +9,16 @@ import { user } from "./redux/auth/auth.selectors";
 import Header from "./components/Header/header";
 import Help from "./Pages/Help/help";
 import Careers from "./Pages/Careers/careers";
+import Term from "./components/Terms/terms";
 
 const App = ({user}) => {
   const token = localStorage.getItem('token');
   return (
     <div>
-    <Header />
       <Switch>
       <Route path="/" exact component={HomePage} />
       <Route path="/signin"  render = {() => token ? <Redirect to="/dashboard" /> : <Auth />} />
-      <Route path="/dashboard" component={Dashboard}
+      <Route path="/dashboard" component={Term} />
 
       />
       <Route path="/help" component={Help} />

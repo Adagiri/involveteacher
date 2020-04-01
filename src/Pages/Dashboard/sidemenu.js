@@ -1,42 +1,18 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from "react";
-import {
-  Sidebar,
-  Dropdown,
-  Image,
-  Segment,
-  Icon,
-  Header
-} from "semantic-ui-react";
+import React from 'react';
+import { Menu, Sidebar, Dropdown, Image, Segment, Icon } from "semantic-ui-react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-// import { useBooleanKnob } from '@stardust-ui/docs-components';
 import { signOutStart } from "../../redux/auth/auth.actions";
 import "./dashboard.css";
 import "./dashboard.css.map";
-import SideMenu from "./sidemenu";
-import Term from "../../components/Terms/terms";
-import { GlobalStyle } from  "../../components/Terms/terms.style";
 
-const Dashboard = ({ history, signOutStart }) => {
-  const [visible, setVisible] = useState(false);
+const SideMenu = ({history}) => {
+    return (
 
-  return (
-    <div>
-      <Sidebar.Pushable as={Segment}>
-        <Sidebar
-          //  as={Menu}
-          animation="overlay"
-          icon="labeled"
-          inverted="true"
-          onHide={() => setVisible(false)}
-          // onShow={()=> setVisible(true)}
-          vertical="true"
-          visible={visible}
-          width="thin"
-          className="ui sidebar inverted vertical menu sidebar-menu"
-        >
-          <div className="item">
+
+      <div className="ui sidebar inverted vertical menu sidebar-menu" id="sidebar">
+      <div className="item">
             <div className="header">General</div>
             <div className="menu">
               <a className="item">
@@ -118,55 +94,9 @@ const Dashboard = ({ history, signOutStart }) => {
               <div className="label">Basic science</div>
             </div>
           </div>
-        </Sidebar>
-        <Sidebar.Pusher dimmed={visible}>
-        <div className="pusher">
-            <div className="main-content">
-            <React.Fragment>
-           
-            <Term />
-            </React.Fragment>
-            </div>
-            </div>
-        </Sidebar.Pusher>
-      </Sidebar.Pushable>
-
-      <SideMenu />
-      <nav className="ui top fixed inverted menu">
-        <div className="left menu">
-          <a
-            href="#"
-            className="sidebar-menu-toggler item"
-            data-target="#sidebar"
-            onClick={() => setVisible(true)}
-          >
-            <i className="sidebar icon"></i>
-          </a>
-          <Image
-            size="mini"
-            src="/Images/itlogo.png"
-            style={{ marginLeft: "1em", padding: ".5em" }}
-          />
-        </div>
-
-        <div className="right menu">
-        <Header className="item" as="h4">Hi Idrees </Header>
-          <a href="#" className="item">
-            <i className="bell icon"></i>
-          </a>
-          <Dropdown className="item " icon="user circle">
-            <Dropdown.Menu>
-              <Dropdown.Item icon="folder" text="Profile" />
-              <Dropdown.Item icon="wrench" text="Settings" />
-              <Dropdown.Item icon="sign-out" text="Logout" />
-
-              <Dropdown.Divider />
-            </Dropdown.Menu>
-          </Dropdown>
-        </div>
-      </nav>
-    </div>
-  );
+      </div>
+    );
 };
 
-export default connect(null, { signOutStart })(withRouter(Dashboard));
+export default withRouter(SideMenu);
+

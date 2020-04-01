@@ -1,39 +1,8 @@
-// import React from "react";
-// import ReactDOM from "react-dom";
-// import "./index.css";
-// import App from "./App";
-// import "semantic-ui-css/semantic.min.css";
-// import "animate.css/animate.css";
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import * as serviceWorker from "./serviceWorker";
-// import { BrowserRouter } from "react-router-dom";
-// import { store, persistor } from "./redux/store";
-// import { PersistGate } from "redux-persist/integration/react";
-// import { Provider } from "react-redux";
-
-// ReactDOM.render(
-//   <Provider store={store}>
-//     <BrowserRouter>
-//       <PersistGate persistor={persistor}>
-//         <App />
-//       </PersistGate>
-//     </BrowserRouter>
-//   </Provider>,
-//   document.getElementById("root")
-// );
-
-// // If you want your app to work offline and load faster, you can change
-// // unregister() to register() below. Note this comes with some pitfalls.
-// // Learn more about service workers: https://bit.ly/CRA-PWA
-// serviceWorker.register();
-
-
-
-import { render } from 'react-dom'
 import React, { useState } from 'react'
 import { useSprings, animated, interpolate } from 'react-spring'
 import { useGesture } from 'react-use-gesture'
-import './index.css'
+import { GlobalStyle  } from "./terms.style";
+
 
 const cards = [
   'https://upload.wikimedia.org/wikipedia/en/f/f5/RWS_Tarot_08_Strength.jpg',
@@ -74,7 +43,16 @@ function Deck() {
       {/* This is the card itself, we're binding our gesture to it (and inject its index so we know which is which) */}
       <animated.div {...bind(i)} style={{ transform: interpolate([rot, scale], trans), backgroundImage: `url(${cards[i]})` }} />
     </animated.div>
-  ))
-}
+  ))}
 
-render(<Deck />, document.getElementById('root'))
+  const Term = () => (
+    <React.Fragment>
+    <GlobalStyle />
+    <Deck />
+    
+    </React.Fragment>
+  )
+
+
+
+export default Term;
