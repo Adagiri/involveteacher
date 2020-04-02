@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import { auth_reducer } from "./auth/auth.reducer";
+import { topics_reducer } from "./topics/topics.reducer";
 import { persistReducer } from "redux-persist";
 import storage  from "redux-persist/lib/storage";
 // import createFilter, { createBlacklistFilter } from 'redux-persist-transform-filter';
@@ -8,7 +9,7 @@ import storage  from "redux-persist/lib/storage";
 const persistConfig = {
     key: "root",
     storage,
-    whitelist: []
+    whitelist: [topics_reducer]
 }
 
 //  export const authFilter = createBlacklistFilter(
@@ -19,7 +20,8 @@ const persistConfig = {
 //   );
 
 const root_reducer = combineReducers({
-    auth: auth_reducer
+    auth: auth_reducer,
+    topics: topics_reducer
 });
 
 export default persistReducer(persistConfig, root_reducer);

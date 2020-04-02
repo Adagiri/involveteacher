@@ -18,7 +18,7 @@ const App = ({user}) => {
       <Switch>
       <Route path="/" exact component={HomePage} />
       <Route path="/signin"  render = {() => token ? <Redirect to="/dashboard" /> : <Auth />} />
-      <Route path="/dashboard" component={Term} />
+      <Route path="/dashboard" component={Dashboard} />
 
       />
       <Route path="/help" component={Help} />

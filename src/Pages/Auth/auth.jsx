@@ -24,7 +24,7 @@ const Auth = ({ auth_toggled }) => {
   return (
     <div className="fadeIn faster animated" style={{background: "#09203f", minHeight: "100vh", zIndex: "10", display: "flex", justifyContent: "center", width: "100vw", overflowX: "hidden"}}>
     <HeaderContainer />
-      {!auth_toggled === "false" ? <LoginForm /> : <RegisterForm />}
+      {auth_toggled === "false" ? <LoginForm /> : <RegisterForm />}
       <Circles>
       <FirstCircle />
       <SecondCircle />

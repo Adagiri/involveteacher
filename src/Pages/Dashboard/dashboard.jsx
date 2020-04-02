@@ -1,28 +1,32 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Sidebar,
   Dropdown,
   Image,
   Segment,
-  Icon,
-  Header
+  Grid,
+  Header,
+  Label
 } from "semantic-ui-react";
 import { withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-// import { useBooleanKnob } from '@stardust-ui/docs-components';
 import { signOutStart } from "../../redux/auth/auth.actions";
 import "./dashboard.css";
 import "./dashboard.css.map";
 import SideMenu from "./sidemenu";
 import Term from "../../components/Terms/terms";
-import { GlobalStyle } from  "../../components/Terms/terms.style";
+import { connect } from "react-redux";
+import { fetchTopicsStart } from "../../redux/topics/topics.actions";
 
-const Dashboard = ({ history, signOutStart }) => {
+const Dashboard = ({ history, fetchTopicsStart }) => {
   const [visible, setVisible] = useState(false);
+ const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsdW1lbi1qd3QiLCJzdWIiOjM0LCJpYXQiOjE1ODU4NDcwNzgsImV4cCI6MTU5MTAzMTA3OH0.tXr5sh6_HlJlyt9jNsLYPFNFU0TEkzLeCAz23__eF00";
+  useEffect(() => {
+    fetchTopicsStart("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsdW1lbi1qd3QiLCJzdWIiOjM0LCJpYXQiOjE1ODU4NDcwNzgsImV4cCI6MTU5MTAzMTA3OH0.tXr5sh6_HlJlyt9jNsLYPFNFU0TEkzLeCAz23__eF00");
+  }, [fetchTopicsStart]);
 
   return (
-    <div>
+    <div style={{background: " #09203f",  overflowX: "hidden"}}>
       <Sidebar.Pushable as={Segment}>
         <Sidebar
           //  as={Menu}
@@ -119,16 +123,24 @@ const Dashboard = ({ history, signOutStart }) => {
             </div>
           </div>
         </Sidebar>
-        <Sidebar.Pusher dimmed={visible}>
-        <div className="pusher">
-            <div className="main-content">
-            <React.Fragment>
-           
-            <Term />
-            </React.Fragment>
-            </div>
-            </div>
-        </Sidebar.Pusher>
+       <Sidebar.Pusher >
+       <div className="pusher" style={{ minHeight: "100vh", background: " #09203f",   overflowX: "hidden"}}>
+       <div className="main-content" style={{ minHeight: "100%", padding: "3em", overflowX: "hidden"}}>
+       <Grid style={{overflowX: "hidden"}} >
+       <Grid.Row>
+       <Label size="huge" color="teal">Mathematics</Label>
+       </Grid.Row>
+
+        <Grid.Row centered>
+        <Term />
+        </Grid.Row>
+       </Grid>
+    
+       </div>
+       </div>
+       </Sidebar.Pusher>
+       
+        
       </Sidebar.Pushable>
 
       <SideMenu />
@@ -165,8 +177,11 @@ const Dashboard = ({ history, signOutStart }) => {
           </Dropdown>
         </div>
       </nav>
+    
     </div>
   );
 };
 
-export default connect(null, { signOutStart })(withRouter(Dashboard));
+
+
+export default connect(null, { fetchTopicsStart })(withRouter(Dashboard));
