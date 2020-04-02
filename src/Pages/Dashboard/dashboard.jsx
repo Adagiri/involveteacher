@@ -126,7 +126,7 @@ const Dashboard = ({ history, fetchTopicsStart }) => {
        <Sidebar.Pusher >
        <div className="pusher" style={{ minHeight: "100vh", background: " #09203f",   overflowX: "hidden"}}>
        <div className="main-content" style={{ minHeight: "100%", padding: "3em", overflowX: "hidden"}}>
-       <Grid style={{overflowX: "hidden"}} >
+       <Grid >
        <Grid.Row>
        <Label size="huge" color="teal">Mathematics</Label>
        </Grid.Row>
