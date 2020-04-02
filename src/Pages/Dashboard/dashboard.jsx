@@ -27,7 +27,7 @@ const Dashboard = ({ history, fetchTopicsStart }) => {
 
   return (
     <div style={{background: " #09203f",  overflowX: "hidden"}}>
-      <Sidebar.Pushable as={Segment}>
+      <Sidebar.Pushable >
         <Sidebar
           //  as={Menu}
           animation="overlay"
@@ -124,8 +124,8 @@ const Dashboard = ({ history, fetchTopicsStart }) => {
           </div>
         </Sidebar>
        <Sidebar.Pusher >
-       <div className="pusher" style={{ minHeight: "100vh", background: " #09203f",   overflowX: "hidden"}}>
-       <div className="main-content" style={{ minHeight: "100%", padding: "3em", overflowX: "hidden"}}>
+       <div className="pusher" style={{ minHeight: "100vh", background: " #09203f", height: "100vh",   overflow: "hidden"}}>
+       <div className="main-content" style={{ minHeight: "100%", padding: "3em", height: "100vh", overflow: "hidden"}}>
        <Grid >
        <Grid.Row>
        <Label size="huge" color="teal">Mathematics</Label>
