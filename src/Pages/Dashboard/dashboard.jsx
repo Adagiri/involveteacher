@@ -17,13 +17,26 @@ import SideMenu from "./sidemenu";
 import Term from "../../components/Terms/terms";
 import { connect } from "react-redux";
 import { fetchTopicsStart } from "../../redux/topics/topics.actions";
+import axios from "axios";
 
 const Dashboard = ({ history, fetchTopicsStart }) => {
   const [visible, setVisible] = useState(false);
  const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsdW1lbi1qd3QiLCJzdWIiOjM0LCJpYXQiOjE1ODU4NDcwNzgsImV4cCI6MTU5MTAzMTA3OH0.tXr5sh6_HlJlyt9jNsLYPFNFU0TEkzLeCAz23__eF00";
+
+ // eslint-disable-next-line react-hooks/exhaustive-deps
+ const fetchTopics= () => {
+  axios.get("https://api.involveteacher.space/v2/topic", {
+    headers: {
+      'token': token
+    }
+  })
+  .then(data => console.log(data))
+  .catch(err => console.log(err))
+ }
+ 
   useEffect(() => {
-    fetchTopicsStart("eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsdW1lbi1qd3QiLCJzdWIiOjM0LCJpYXQiOjE1ODU4NDcwNzgsImV4cCI6MTU5MTAzMTA3OH0.tXr5sh6_HlJlyt9jNsLYPFNFU0TEkzLeCAz23__eF00");
-  }, [fetchTopicsStart]);
+    fetchTopics();
+  }, [fetchTopics]);
 
   return (
     <div style={{background: " #09203f",  overflowX: "hidden"}}>
@@ -39,6 +52,7 @@ const Dashboard = ({ history, fetchTopicsStart }) => {
           visible={visible}
           width="thin"
           className="ui sidebar inverted vertical menu sidebar-menu"
+          style={{width: "45%"}}
         >
           <div className="item">
             <div className="header">General</div>
@@ -123,7 +137,7 @@ const Dashboard = ({ history, fetchTopicsStart }) => {
             </div>
           </div>
         </Sidebar>
-       <Sidebar.Pusher >
+       <Sidebar.Pusher dimmed={visible} >
        <div className="pusher" style={{ minHeight: "100vh", background: " #09203f", height: "100vh",   overflow: "hidden"}}>
        <div className="main-content" style={{ minHeight: "100%", padding: "3em", height: "100vh", overflow: "hidden"}}>
        <Grid >

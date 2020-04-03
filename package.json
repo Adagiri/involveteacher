@@ -2,7 +2,6 @@
   "name": "sleek-tutor",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://api.involveteacher.space/",
   "dependencies": {
     "@stardust-ui/docs-components": "0.40.0",
     "@testing-library/jest-dom": "^4.2.4",
