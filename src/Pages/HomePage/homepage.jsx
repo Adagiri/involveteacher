@@ -26,7 +26,7 @@ import {
 
     const HomePage = ({history}) => {
       return (
-        <div  style={{background: "#09203f", zIndex: "3"}}>
+        <div  style={{background: "#09203f", zIndex: "3", paddingTop: "7em"}}>
         <HeaderContainer />
 <div style={{height: "100vh", width: "100vw" }}>
 <div style={{position: "absolute", left: "0", top: "50px", width: "100vw", height: "100vh", zIndex: "2", background: "teal", opacity: "0.4" }} />

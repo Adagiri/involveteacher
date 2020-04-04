@@ -71,7 +71,7 @@ const LoginForm = ({
       textAlign="center"
       verticalAlign="middle"
       className="animated bounceInDown fast"
-      style={{ zIndex: "50", minWidth: "50%"}}
+      style={{ zIndex: "50", minWidth: "50%", overflow: "hidden"}}
     >
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as="h2" style={{ color: "white" }} textAlign="center">

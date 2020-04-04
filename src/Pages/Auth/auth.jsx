@@ -17,15 +17,24 @@ import {
   SeventhCircle,
   EightCircle,
   NinthCircle,
-  TenthCircle
+  TenthCircle,
+  EleventhCircle,
+  TwelvthCircle,
+  ThirteenthCircle,
+  FourteenthCircle,
+  FifteenthCircle,
+  SixteenthCircle,
+  SeventeethCircle,
+  EighteenthCircle,
+  NineteenthCircle
 } from "./auth.styles";
 
 const Auth = ({ auth_toggled }) => {
   return (
-    <div className="fadeIn faster animated" style={{background: "#09203f", minHeight: "100vh", zIndex: "10", display: "flex", justifyContent: "center", width: "100vw", overflowX: "hidden"}}>
+    <div className="fadeIn faster animated" style={{background: "#09203f", minHeight: "100vh", zIndex: "10", display: "flex", justifyContent: "center", width: "100vw", paddingTop: "7em"}}>
     <HeaderContainer />
       {auth_toggled === "false" ? <LoginForm /> : <RegisterForm />}
-      <Circles>
+      <Circles >
       <FirstCircle />
       <SecondCircle />
       <ThirdCircle />
@@ -36,6 +45,15 @@ const Auth = ({ auth_toggled }) => {
       <EightCircle />
       <NinthCircle />
       <TenthCircle />
+      <EleventhCircle />
+      <TwelvthCircle />
+      <ThirteenthCircle />
+      <FourteenthCircle />
+      <FifteenthCircle />
+      <SixteenthCircle />
+      <SeventeethCircle />
+      <EighteenthCircle />
+      <NineteenthCircle />
     </Circles>
     </div>
     

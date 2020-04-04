@@ -9,7 +9,7 @@ from{
     transform: translateY(0) rotate(0deg);
     opacity: 1;
     border-radius: 100px;
-   top: 130vh;
+   top: 100%;
 }
 
 to{
@@ -26,8 +26,7 @@ const circleConstant = css`
   display: block;
   list-style: none;
   background: rgba(255, 255, 255, 0.2);
-  animation: ${keyFrames} 5s linear infinite;
-  bottom: -150px;
+  animation: ${keyFrames} 10s  infinite;
   border-radius: 100%
   z-index: 5;
 `;
@@ -40,102 +39,159 @@ width: 100%;
 min-height: 100vh;
 overflow: hidden;
 z-index: 5;
+
 `;
 
 export const FirstCircle = styled.li`
 ${circleConstant}
-left: 25%;
-width: 80px;
-height: 80px;
-animation-delay: 0s;
-background: orange;
+left: 5vw;
+width: 10px;
+height: 10px;
+animation-delay: 1s;
 `;
 
 export const SecondCircle = styled.li`
 ${circleConstant}
-left: 10%;
-width: 20px;
-height: 20px;
+left: 10vw;
+width: 12px;
+height: 12px;
 animation-delay: 2s;
-animation-duration: 12s;
-background: teal;
 `;
 
 export const ThirdCircle = styled.li`
 ${circleConstant};
-left: 70%;
-width: 20px;
-height: 20px;
-animation-delay: 4s;
-background: green;
+left: 15vw;
+width: 14px;
+height: 14px;
+animation-delay: 1.5s;
 `;
 
 export const FourthCircle = styled.li`
 ${circleConstant};
-left: 40%;
-width: 60px;
-height: 60px;
-animation-delay: 0s;
-animation-duration: 18s;
-background: blue;
+left: 20vw;
+width: 16px;
+height: 16px;
+animation-delay: 3s;
 `;
 
 export const FifthCircle = styled.li`
 ${circleConstant};
-left: 65%;
-width: 20px;
-height: 20px;
-animation-delay: 0s;
-background: purple;
+left: 25vw;
+width: 18px;
+height: 18px;
+animation-delay: 3.5s;
 `;
 
 export const SixthCircle = styled.li`
 ${circleConstant};
-left: 75%;
-width: 80px;
-height: 80px;
-animation-delay: 3s;
-background: violet;
+left: 30vw;
+width: 20px;
+height: 20px;
+animation-delay: 2.5s;
 `;
 
 export const SeventhCircle = styled.li`
 ${circleConstant};
-left: 35%;
-width: 100px;
-height: 80px;
-animation-delay: 7s;
-background: yellow;
+left: 35vw;
+width: 22px;
+height: 22px;
+animation-delay: 1.8s;
 `;
 
 export const EightCircle = styled.li`
 ${circleConstant};
-left: 50%;
-width: 25px;
-height: 25px;
-animation-delay: 15s;
-animation-duration: 45s;
-background: white;
+left: 40vw;
+width: 24px;
+height: 24px;
+animation-delay: 1.2s;
 `;
 
 export const NinthCircle = styled.li`
 ${circleConstant};
-left: 20%;
-width: 15px;
-height: 15px;
-animation-delay: 2s;
-animation-duration: 35s;
-background: brown;
+left: 45vw;
+width: 26px;
+height: 26px;
 `;
 
 export const TenthCircle = styled.li`
 ${circleConstant};
-left: 85%;
-width: 150px;
-height: 150px;
-animation-delay: 0s;
-animation-duration: 11s;
-background: red;
+left: 50vw;
+width: 40px;
+height: 40px;
+animation-delay: 0.5s;
 `;
+
+export const EleventhCircle = styled.li`
+${circleConstant};
+left: 55vw;
+width: 26px;
+height: 26px;
+animation-delay: 2.8s;
+`;
+export const TwelvthCircle = styled.li`
+${circleConstant};
+left: 60vw;
+width: 24px;
+height: 24px;
+animation-delay: 2s;
+`;
+
+export const ThirteenthCircle = styled.li`
+${circleConstant};
+left: 65vw;
+width: 22px;
+height: 22px;
+animation-delay: 3s;
+`;
+
+export const FourteenthCircle = styled.li`
+${circleConstant};
+left: 70vw;
+width: 20px;
+height: 20px;
+animation-delay: 1.5s;
+`;
+
+export const FifteenthCircle = styled.li`
+${circleConstant};
+left: 75vw;
+width: 18px;
+height: 18px;
+animation-delay: 3.2s;
+`;
+
+export const SixteenthCircle = styled.li`
+${circleConstant};
+left: 80vw;
+width: 16px;
+height: 16px;
+animation-delay: 1.4s;
+`;
+
+export const SeventeethCircle = styled.li`
+${circleConstant};
+left: 85vw;
+width: 14px;
+height: 14px;
+animation-delay: 1s;
+`;
+
+export const EighteenthCircle = styled.li`
+${circleConstant};
+left: 90vw;
+width: 12px;
+height: 12px;
+animation-delay: 2.5s;
+`;
+
+export const NineteenthCircle = styled.li`
+${circleConstant};
+left: 95vw;
+width: 10px;
+height: 10px;
+animation-delay: 1s;
+`;
+
 
 
 export const CustomButton = styled(Button)`

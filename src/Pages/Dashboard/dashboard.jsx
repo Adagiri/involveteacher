@@ -4,22 +4,20 @@ import {
   Sidebar,
   Dropdown,
   Image,
-  Segment,
   Grid,
   Header,
   Label
 } from "semantic-ui-react";
-import { withRouter } from "react-router-dom";
-import { signOutStart } from "../../redux/auth/auth.actions";
-import "./dashboard.css";
-import "./dashboard.css.map";
-import SideMenu from "./sidemenu";
-import Term from "../../components/Terms/terms";
-import { connect } from "react-redux";
-import { fetchTopicsStart } from "../../redux/topics/topics.actions";
 import axios from "axios";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import Term from "../../components/Terms/terms";
+import { signOutStart } from "../../redux/auth/auth.actions";
+import SideMenu from "./sidemenu";
+import { fetchTopicsStart } from "../../redux/topics/topics.actions";
+import { GlobalStyle } from "./dashboard.styles";
 
-const Dashboard = ({ history, fetchTopicsStart }) => {
+const Dashboard = ({ history, fetchTopicsStart, signOutStart }) => {
   const [visible, setVisible] = useState(false);
  const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsdW1lbi1qd3QiLCJzdWIiOjM0LCJpYXQiOjE1ODU4NDcwNzgsImV4cCI6MTU5MTAzMTA3OH0.tXr5sh6_HlJlyt9jNsLYPFNFU0TEkzLeCAz23__eF00";
 
@@ -39,6 +37,8 @@ const Dashboard = ({ history, fetchTopicsStart }) => {
   }, [fetchTopics]);
 
   return (
+    <React.Fragment>
+    <GlobalStyle />
     <div style={{background: " #09203f",  overflowX: "hidden"}}>
       <Sidebar.Pushable >
         <Sidebar
@@ -64,7 +64,7 @@ const Dashboard = ({ history, fetchTopicsStart }) => {
                 </div>
               </a>
             </div>
-            <div className="menu" onClick={() => history.push("/")}>
+            <div className="menu" onClick={() => history.push("/info")}>
               <a className="item">
                 <div>
                   <i className="icon home"></i>
@@ -184,7 +184,9 @@ const Dashboard = ({ history, fetchTopicsStart }) => {
             <Dropdown.Menu>
               <Dropdown.Item icon="folder" text="Profile" />
               <Dropdown.Item icon="wrench" text="Settings" />
-              <Dropdown.Item icon="sign-out" text="Logout" />
+              <Dropdown.Item icon="sign-out" text="Logout" onClick={() =>{ 
+                signOutStart()
+                history.push("/")}} />
 
               <Dropdown.Divider />
             </Dropdown.Menu>
@@ -193,9 +195,11 @@ const Dashboard = ({ history, fetchTopicsStart }) => {
       </nav>
     
     </div>
+    </React.Fragment>
+    
   );
 };
 
 
 
-export default connect(null, { fetchTopicsStart })(withRouter(Dashboard));
+export default connect(null, { fetchTopicsStart, signOutStart })(withRouter(Dashboard));

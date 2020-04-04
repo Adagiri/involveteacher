@@ -1,28 +1,23 @@
 import React from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
-import Auth from "./Pages/Auth/auth";
-import HomePage from "./Pages/HomePage/homepage";
-import Dashboard from "./Pages/Dashboard/dashboard";
+import { Route, Switch, Redirect } from "react-router-dom"
 import { createStructuredSelector } from "reselect";
 import { connect } from "react-redux";
 import { user } from "./redux/auth/auth.selectors";
-import Header from "./components/Header/header";
-import Help from "./Pages/Help/help";
-import Careers from "./Pages/Careers/careers";
-import Term from "./components/Terms/terms";
+import Auth from "./Pages/Auth/auth";
+import HomePage from "./Pages/HomePage/homepage";
+import Dashboard from "./Pages/Dashboard/dashboard";
 
 const App = ({user}) => {
   const token = localStorage.getItem('token');
   return (
     <div>
       <Switch>
-      <Route path="/" exact component={HomePage} />
+      <Route path="/info"  component={HomePage} />
+      <Route path="/" exact render = {() => token ? <Redirect to="/dashboard" /> : <Auth />} />
       <Route path="/signin"  render = {() => token ? <Redirect to="/dashboard" /> : <Auth />} />
-      <Route path="/dashboard" component={Dashboard} />
+      <Route path="/dashboard" render = {() => !token ? <Dashboard /> : <Auth />} />
 
       />
-      <Route path="/help" component={Help} />
-   <Route path="/careers" component={Careers} />
       </Switch>
     </div>
   );
