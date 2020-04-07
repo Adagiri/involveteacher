@@ -17,11 +17,15 @@ import SideMenu from "./sidemenu";
 import { fetchTopicsStart } from "../../redux/topics/topics.actions";
 import { GlobalStyle } from "./dashboard.styles";
 
+
+
 const Dashboard = ({ history, fetchTopicsStart, signOutStart }) => {
   const [visible, setVisible] = useState(false);
  const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJsdW1lbi1qd3QiLCJzdWIiOjM0LCJpYXQiOjE1ODU4NDcwNzgsImV4cCI6MTU5MTAzMTA3OH0.tXr5sh6_HlJlyt9jNsLYPFNFU0TEkzLeCAz23__eF00";
 
  // eslint-disable-next-line react-hooks/exhaustive-deps
+
+
  const fetchTopics= () => {
   axios.get("https://api.involveteacher.space/v2/topic", {
     headers: {

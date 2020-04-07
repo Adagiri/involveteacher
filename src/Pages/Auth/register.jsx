@@ -29,6 +29,7 @@ import {
 } from "../../redux/auth/auth.selectors";
 import { createStructuredSelector } from "reselect";
 import { withRouter } from "react-router-dom";
+import { useTransition, animated } from "react-spring";
 
 const RegisterForm = ({
   authToggle,
@@ -39,7 +40,8 @@ const RegisterForm = ({
   signUpStart,
   setModal,
   set_modal,
-  history
+  history,
+  setToggle
 }) => {
   const [credentials, setCredentials] = useState({
     username: "",
@@ -149,12 +151,19 @@ const RegisterForm = ({
   const displayError = errors =>
     errors.map((error, i) => <p key={i}>{error.message}</p>);
 
-  return (
-    <Grid
+    const transitions = useTransition(null , null, {
+      from: {opacity: 0, transform: "translate(100vw, 0)"},
+     enter: {opacity: 1, transform: "translate(0%, 0)", zIndex: "11", width: "100%", display: "flex", justifyContent: "center", minHeight: "100vh", marginTop: "2rem"},
+     leave: { opacity: 0, transform: "translate(-90vw, 0)"}
+     });
+  
+
+  return  transitions.map(({ item, key, props}) => 
+  <animated.div style={props}>
+  <Grid
       textAlign="center"
       verticalAlign="middle"
-      className="animated  bounceInDown  fast"
-      style={{ zIndex: "50", minWidth: "50%"}}
+      style={{ zIndex: "11", minWidth: "50%"}}
     >
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as="h2" style={{ color: "white" }} textAlign="center">
@@ -292,7 +301,9 @@ const RegisterForm = ({
         
       </Grid.Column>
     </Grid>
-  );
+  </animated.div>)
+    
+ 
 };
 
 const mapDispatchToProps = dispatch => ({

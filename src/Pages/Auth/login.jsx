@@ -23,6 +23,7 @@ import {
 } from "../../redux/auth/auth.selectors";
 import { createStructuredSelector } from "reselect";
 import { withRouter } from "react-router-dom";
+import { animated ,useTransition } from "react-spring";
 
 
 const LoginForm = ({
@@ -31,8 +32,7 @@ const LoginForm = ({
   signInStart,
   setErrors,
   setLoading,
-  error_messages,
-  history
+  error_messages
 }) => {
   const [credentials, setCredentials] = useState({
     email: "",
@@ -62,16 +62,23 @@ const LoginForm = ({
     }, 500 )
   };
 
+  const transitions = useTransition(null , null, {
+    from: {opacity: 0, transform: "translate(100vw, 0)"},
+   enter: {opacity: 1, transform: "translate(0%, 0)", zIndex: "11", width: "100%", display: "flex", justifyContent: "center", height: "100vh"},
+   leave: { opacity: 0, transform: "translate(-90vw, 0)"}
+   });
+
   
 
   const displayError = errors =>
     errors.map((error, i) => <p key={i}>{error.message}</p>);
-  return (
-    <Grid
+  return    transitions.map(({ item, key, props}) => 
+  <animated.div style={props}>
+  <Grid
       textAlign="center"
       verticalAlign="middle"
-      className="animated bounceInDown fast"
-      style={{ zIndex: "50", minWidth: "50%", overflow: "hidden"}}
+
+      style={{ zIndex: "11", minWidth: "50%", overflow: "hidden", height: "100vh"}}
     >
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as="h2" style={{ color: "white" }} textAlign="center">
@@ -131,7 +138,7 @@ const LoginForm = ({
           Don't have an account?
           <Item
             as="a"
-            onClick={() => authToggle("true")}
+            onClick={() => authToggle(true)}
             style={{ cursor: "pointer", color: "orange" }}
           >
             {" "}
@@ -140,7 +147,8 @@ const LoginForm = ({
         </Message>
       </Grid.Column>
     </Grid>
-  );
+    </animated.div>
+  ) 
 };
 
 const mapDispatchToProps = dispatch => ({

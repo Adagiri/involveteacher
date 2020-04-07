@@ -1,5 +1,4 @@
 import React from "react";
-import BackgroundImage from "../../Utils/BackgroundImage/backgroundImage";
 import HeaderContainer from "../../components/Header/header";
 import LoginForm from "./login";
 import RegisterForm from "./register";
@@ -28,11 +27,14 @@ import {
   EighteenthCircle,
   NineteenthCircle
 } from "./auth.styles";
+import AbsoluteWrapper from "../../components/Absolute_wrapper/AbsoluteWrapper";
 
 const Auth = ({ auth_toggled }) => {
   return (
-    <div className="fadeIn faster animated" style={{background: "#09203f", minHeight: "100vh", zIndex: "10", display: "flex", justifyContent: "center", width: "100vw", paddingTop: "7em"}}>
+    <AbsoluteWrapper>
     <HeaderContainer />
+    <div class="main-content" style={{background: "#09203f", minHeight: "100vh", zIndex: "10", display: "flex", justifyContent: "center", width: "100vw", overflow: "hidden", height: "100vh"}}>
+   
       {auth_toggled === "false" ? <LoginForm /> : <RegisterForm />}
       <Circles >
       <FirstCircle />
@@ -56,7 +58,7 @@ const Auth = ({ auth_toggled }) => {
       <NineteenthCircle />
     </Circles>
     </div>
-    
+    </AbsoluteWrapper>
   );
 };
 

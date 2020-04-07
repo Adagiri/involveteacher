@@ -21,11 +21,11 @@ import {
   NinthCircle,
   TenthCircle
 } from "./homepage.styles";
-
-
+import AbsoluteWrapper from "../../components/Absolute_wrapper/AbsoluteWrapper";
 
     const HomePage = ({history}) => {
       return (
+        <AbsoluteWrapper>
         <div  style={{background: "#09203f", zIndex: "3", paddingTop: "7em"}}>
         <HeaderContainer />
 <div style={{height: "100vh", width: "100vw" }}>
@@ -260,6 +260,8 @@ style={{maxWidth: "95%", fontSize: "1.2rem", fontWeight: "500"}}
       </Circles>
 </div> 
 
+        </AbsoluteWrapper>
+       
       )
     }
     
