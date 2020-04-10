@@ -3,7 +3,7 @@ import {
   Button,
   Form,
   Grid,
-  Header,
+  Image,
   Icon,
   Message,
   Segment,
@@ -19,12 +19,11 @@ import {
 import {
   error_messages,
   loading,
-  redirect
 } from "../../redux/auth/auth.selectors";
 import { createStructuredSelector } from "reselect";
 import { withRouter } from "react-router-dom";
 import { animated ,useTransition } from "react-spring";
-
+import logo from "../../assets/itlogo.png";
 
 const LoginForm = ({
   authToggle,
@@ -64,8 +63,8 @@ const LoginForm = ({
 
   const transitions = useTransition(null , null, {
     from: {opacity: 0, transform: "translate(100vw, 0)"},
-   enter: {opacity: 1, transform: "translate(0%, 0)", zIndex: "11", width: "100%", display: "flex", justifyContent: "center", height: "100vh"},
-   leave: { opacity: 0, transform: "translate(-90vw, 0)"}
+   enter: {opacity: 1, transform: "translate(0, 0)", zIndex: "11", width: "100%", display: "flex", justifyContent: "center", height: "100vh", position: "absolute", top: "0", left: "0", paddingTop: "3em"},
+   leave: { opacity: 0, transform: "translate(-50%, 0)"}
    });
 
   
@@ -81,12 +80,15 @@ const LoginForm = ({
       style={{ zIndex: "11", minWidth: "50%", overflow: "hidden", height: "100vh"}}
     >
       <Grid.Column style={{ maxWidth: 450 }}>
-        <Header as="h2" style={{ color: "white" }} textAlign="center">
-          <Icon name="sign in" size="big" style={{ color: "orange",  }} /> Log-in
-          to Dashboard
-        </Header>
+       
         <Form size="large" onSubmit={handleSubmit}>
           <Segment stacked style={{ background: "rgba(255, 255, 255, 0.2)" }}>
+          <div style={{position: "absolute", top: "-3em", display: "flex", }}><Image size='mini' src={logo}  />
+          <p  style={{ color: "rgba(127,255,0, 0.8)", fontSize: "22px", fontWeight: "500", marginBottom: "0.6", position: 'absolute', bottom: "0", left: "2em" }} >
+     Login
+
+    </p>
+          </div>
             <Form.Input
               fluid
               icon="user"
@@ -113,13 +115,12 @@ const LoginForm = ({
             />
 
             <Button
-              color="orange"
+              color="teal"
               style={{ color: "white" }}
               size="large"
               fluid
               loading={loading}
               disabled={loading}
-              // onClick={() => handleRedirect(redirect)}
             >
               Login
             </Button>
@@ -139,7 +140,7 @@ const LoginForm = ({
           <Item
             as="a"
             onClick={() => authToggle(true)}
-            style={{ cursor: "pointer", color: "orange" }}
+            style={{ cursor: "pointer", color: "rgba(127,255,0, 0.8)" }}
           >
             {" "}
             Register

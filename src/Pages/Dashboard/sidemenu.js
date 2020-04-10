@@ -1,14 +1,14 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import { withRouter } from "react-router-dom";
-import "./dashboard.css";
+import "./dashboard.scss";
 
 const SideMenu = ({history}) => {
     return (
   <React.Fragment>
   <div className="ui sidebar inverted vertical menu sidebar-menu" id="sidebar">
   <div className="item">
-        <div className="header">General</div>
+        <div className="header" onClick={() => history.push("/sample")}>Sample</div>
         <div className="menu">
           <a className="item">
             <div>
@@ -17,14 +17,14 @@ const SideMenu = ({history}) => {
             </div>
           </a>
         </div>
-        <div className="menu" onClick={() => history.push("/info")}>
-          <a className="item">
-            <div>
-              <i className="icon home"></i>
-             Product Home 
-            </div>
-          </a>
-        </div>
+        <div className="menu">
+                <a className="item" href="https://digics.netlify.com" target="_blank" rel="noopener noreferrer">
+                  <div>
+                    <i className="icon home"></i>
+                    Company
+                  </div>
+                </a>
+              </div>
       </div>
       <div className="item">
         <div className="header">Administration</div>
@@ -96,4 +96,3 @@ const SideMenu = ({history}) => {
 };
 
 export default withRouter(SideMenu);
-

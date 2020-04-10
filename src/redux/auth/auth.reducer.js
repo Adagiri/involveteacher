@@ -4,8 +4,8 @@ const initialAuth = {
   loading: false,
   error_messages: [],
   user: null,
-  signedup_user: null,
-  set_modal: false
+  set_modal: false,
+  portal: false
 };
 
 export const auth_reducer = (state = initialAuth, action) => {
@@ -30,6 +30,12 @@ export const auth_reducer = (state = initialAuth, action) => {
         error_messages: action.payload
       };
 
+      case AuthActionTypes.PORTAL:
+      return {
+        ...state,
+        portal: action.payload
+      };
+
     case AuthActionTypes.SIGN_UP_START:
       return {
         ...state
@@ -38,7 +44,7 @@ export const auth_reducer = (state = initialAuth, action) => {
     case AuthActionTypes.SIGN_UP_SUCCESS:
       return {
         ...state,
-        signedup_user: action.payload
+        user: action.payload
       };
 
     case AuthActionTypes.SET_MODAL:

@@ -1,11 +1,14 @@
 import axios from "axios";
 
-export const fetchTopics = () => {
-  console.log('yay')
-  axios.get("http://jsonplaceholder.typicode.com/users")
-  .then(data => console.log(data))
-  .catch(err => console.log(err))
-};
+ export const fetchTopics = (token) =>  axios
+      .post("https://api.involveteacher.space/public/v2/topic", {
+        headers: {
+          "auth-token": token,
+        },
+      })
+      
+  
+
 
 
 // let url = "https://api.involveteacher.space/v2/topic";
@@ -34,16 +37,5 @@ export const fetchTopics = () => {
 
 
 
-//    // axios.get(url, {
-//    //    headers: {
-//    //       'token': token
-//    //     }
-//    //  })
-//    //  .then((res => {
-//    //    console.log(res);
-//    // }))
-//    // .catch(err => {
-//    //    console.log(err);
-//    // })
    
  

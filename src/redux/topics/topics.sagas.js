@@ -6,10 +6,9 @@ import {  fetchTopicsFailure, fetchTopicsSuccess } from "./topics.actions";
 export function* setFetchTopicsStart({payload}) {
  try{
 const data = yield fetchTopics(payload);
-yield put(fetchTopicsSuccess(data));
+yield put(fetchTopicsSuccess(data.data.data));
  } catch(err) {
   yield put(fetchTopicsFailure(err));
-  console.log(err);
  }
 };
 

@@ -3,12 +3,10 @@ import {
   Button,
   Form,
   Grid,
-  Header,
-  Icon,
+  Image,
   Message,
   Segment,
   Item,
-  Modal
 } from "semantic-ui-react";
 import {
   authToggle,
@@ -30,6 +28,7 @@ import {
 import { createStructuredSelector } from "reselect";
 import { withRouter } from "react-router-dom";
 import { useTransition, animated } from "react-spring";
+import logo from "../../assets/itlogo.png";
 
 const RegisterForm = ({
   authToggle,
@@ -152,9 +151,9 @@ const RegisterForm = ({
     errors.map((error, i) => <p key={i}>{error.message}</p>);
 
     const transitions = useTransition(null , null, {
-      from: {opacity: 0, transform: "translate(100vw, 0)"},
-     enter: {opacity: 1, transform: "translate(0%, 0)", zIndex: "11", width: "100%", display: "flex", justifyContent: "center", minHeight: "100vh", marginTop: "2rem"},
-     leave: { opacity: 0, transform: "translate(-90vw, 0)"}
+      from: {opacity: 0, transform: "translate(100%, 0)"},
+     enter: {opacity: 1, transform: "translate(0, 0)", zIndex: "11", width: "100%", display: "flex", justifyContent: "center", minHeight: "100vh",  paddingTop: "3em"},
+     leave: { opacity: 0, transform: "translate(-90%, 0)"}
      });
   
 
@@ -166,12 +165,16 @@ const RegisterForm = ({
       style={{ zIndex: "11", minWidth: "50%"}}
     >
       <Grid.Column style={{ maxWidth: 450 }}>
-        <Header as="h2" style={{ color: "white" }} textAlign="center">
-          <Icon name="signup" size="big" style={{ color: "orange" }} /> Create
-          an Account
-        </Header>
+      
         <Form size="large" onSubmit={handleSubmit}>
           <Segment stacked style={{ background: "rgba(255, 255, 255, 0.2)" }}>
+          <div style={{position: "absolute", top: "-3em", display: "flex", }}><Image size='mini' src={logo}  />
+          <p  style={{ color: "rgba(127,255,0, 0.8)", fontSize: "22px", fontWeight: "500", marginBottom: "0.6", position: 'absolute', bottom: "0", left: "2em" }} >
+     Register
+
+    </p>
+          </div>
+          
             <Form.Input
               fluid
               icon="user"
@@ -235,8 +238,7 @@ const RegisterForm = ({
             />
 
             <Button
-              color="orange"
-              style={{ color: "white" }}
+             color="teal"
               size="large"
               fluid
               loading={loading}
@@ -260,44 +262,12 @@ const RegisterForm = ({
           <Item
             as="a"
             onClick={() => authToggle("false")}
-            style={{ cursor: "pointer", color: "orange" }}
+            style={{ cursor: "pointer", color: "rgba(127,255,0, 0.8)" }}
           >
             {" "}
             Login
           </Item>
         </Message>
-     
-        <Modal
-          dimmer="blurring"
-          size="mini"
-          open={set_modal}
-          onClose={() => setModal(false)}
-          closeOnDimmerClick={false}
-          closeOnEscape={false}
-          fluid
-          centered
-          style={{background: "transparent", display: "flex", justifyContent: "center", alignItems: "center"  }}
-        >
-          <Modal.Header style={{ backgroundColor: "#09203f", color: "white" }}>
-            Registration Successful
-          </Modal.Header>
-          <Modal.Content style={{ backgroundColor: "#09203f", color: "white" }}>
-            <p>Go to dashboard</p>
-          </Modal.Content>
-          <Modal.Actions style={{ backgroundColor: "#09203f", color: "white" }}>
-            <Button
-              style={{ backgroundColor: "teal", color: "white" }}
-              positive
-              icon="checkmark"
-              labelPosition="right"
-              content="Yes"
-              onClick={() => {
-                history.push("/dashboard");
-                setModal(false);
-              }}
-            />
-          </Modal.Actions>
-        </Modal>
         
       </Grid.Column>
     </Grid>

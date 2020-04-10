@@ -1,10 +1,12 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from "react";
 import HeaderContainer from "../../components/Header/header";
 import LoginForm from "./login";
 import RegisterForm from "./register";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { auth_toggled } from "../../redux/auth/auth.selectors";
+import { setErrors, setLoading, authToggle, portal } from "../../redux/auth/auth.actions";
 import {
   Circles,
   FirstCircle,
@@ -27,14 +29,24 @@ import {
   EighteenthCircle,
   NineteenthCircle
 } from "./auth.styles";
-import AbsoluteWrapper from "../../components/Absolute_wrapper/AbsoluteWrapper";
 
-const Auth = ({ auth_toggled }) => {
+
+const Auth = ({ auth_toggled, setErrors, setLoading, authToggle, portal }) => {
+
+  const componentLoading = () => {
+    setLoading(false);
+    setErrors([])
+    portal(false)
+  }
+
+  useEffect(() => {
+    componentLoading()
+    
+  }, [componentLoading])
   return (
-    <AbsoluteWrapper>
+    
+    <div style={{background: "#09203f", minHeight: "100vh", zIndex: "10", display: "flex", justifyContent: "center", width: "100vw", overflow: "hidden", height: "100vh", position: "absolute", top: 0, left: 0}}>
     <HeaderContainer />
-    <div class="main-content" style={{background: "#09203f", minHeight: "100vh", zIndex: "10", display: "flex", justifyContent: "center", width: "100vw", overflow: "hidden", height: "100vh"}}>
-   
       {auth_toggled === "false" ? <LoginForm /> : <RegisterForm />}
       <Circles >
       <FirstCircle />
@@ -58,7 +70,8 @@ const Auth = ({ auth_toggled }) => {
       <NineteenthCircle />
     </Circles>
     </div>
-    </AbsoluteWrapper>
+   
+    
   );
 };
 
@@ -66,4 +79,4 @@ const mapStateToProps = createStructuredSelector({
   auth_toggled: auth_toggled
 });
 
-export default connect(mapStateToProps)(Auth);
+export default connect(mapStateToProps, { authToggle, setLoading, setErrors, portal })(Auth);

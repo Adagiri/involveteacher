@@ -24,7 +24,7 @@
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
-    "react-spring": "^9.0.0-beta.34",
+    "react-spring": "^8.0.27",
     "react-use-gesture": "^7.0.6",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
@@ -38,7 +38,7 @@
     "uuid": "^7.0.2"
   },
   "scripts": {
-  "start": " react-scripts start",
+    "start": " react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -60,5 +60,5 @@
   },
   "jest": {
     "testEnvironment": "node"
-}
+  }
 }

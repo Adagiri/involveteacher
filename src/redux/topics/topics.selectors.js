@@ -1,9 +1,8 @@
 import { createSelector } from "reselect";
 
+export const topics = (state) => state.topics;
 
-export const topics = state => state.topics;
-
- export const getTopics = createSelector(
-    [topics],
-    (topics) => auth.topics
+export const getTopicsList = createSelector(
+  [topics],
+  (topics) => topics.topics
 );

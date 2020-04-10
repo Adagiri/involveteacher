@@ -35,7 +35,7 @@ export const Circles = styled.ul`
 position: absolute;
 top: 0;
 left: 0;
-width: 100%;
+width: 100vw;
 min-height: 100vh;
 overflow: hidden;
 z-index: 5;
@@ -56,6 +56,7 @@ left: 10vw;
 width: 12px;
 height: 12px;
 animation-delay: 2s;
+background-color: rgba(127,255,0, 0.8);
 `;
 
 export const ThirdCircle = styled.li`
@@ -72,6 +73,7 @@ left: 20vw;
 width: 16px;
 height: 16px;
 animation-delay: 3s;
+background-color: teal;
 `;
 
 export const FifthCircle = styled.li`
@@ -80,6 +82,7 @@ left: 25vw;
 width: 18px;
 height: 18px;
 animation-delay: 3.5s;
+background-color: rgba(127,255,0, 0.8);
 `;
 
 export const SixthCircle = styled.li`
@@ -104,6 +107,7 @@ left: 40vw;
 width: 24px;
 height: 24px;
 animation-delay: 1.2s;
+background-color: rgba(127,255,0, 0.8);
 `;
 
 export const NinthCircle = styled.li`
@@ -119,6 +123,7 @@ left: 50vw;
 width: 40px;
 height: 40px;
 animation-delay: 0.5s;
+background-color: teal;
 `;
 
 export const EleventhCircle = styled.li`
@@ -142,6 +147,7 @@ left: 65vw;
 width: 22px;
 height: 22px;
 animation-delay: 3s;
+background-color: rgba(127,255,0, 0.8);
 `;
 
 export const FourteenthCircle = styled.li`
@@ -150,6 +156,7 @@ left: 70vw;
 width: 20px;
 height: 20px;
 animation-delay: 1.5s;
+background-color: rgba(127,255,0, 0.8);
 `;
 
 export const FifteenthCircle = styled.li`
@@ -166,6 +173,7 @@ left: 80vw;
 width: 16px;
 height: 16px;
 animation-delay: 1.4s;
+background-color: rgba(127,255,0, 0.8);
 `;
 
 export const SeventeethCircle = styled.li`
@@ -182,6 +190,7 @@ left: 90vw;
 width: 12px;
 height: 12px;
 animation-delay: 2.5s;
+background-color: teal;
 `;
 
 export const NineteenthCircle = styled.li`

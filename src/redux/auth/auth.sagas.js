@@ -1,8 +1,7 @@
 import { takeLatest, all, call, put } from "redux-saga/effects";
 import AuthActionTypes from "./auth.types";
-import axios from "axios";
-import { setErrors, signUpSuccess, setLoading, setModal, signInSuccess, signOutSuccess } from "./auth.actions";
-import { registerUser } from "./auth.utils"
+import { setErrors, signUpSuccess, setLoading, setModal, signInSuccess, signOutSuccess, portal } from "./auth.actions";
+import { registerUser, loginUser } from "./auth.utils"
 
 
 //AuthToggle__Start
@@ -11,15 +10,20 @@ export function* setSignUpStart({payload}) {
   try{
     const data = yield registerUser(payload)
      
-      yield console.log(data);
-      // yield localStorage.setItem('user', JSON.stringify(object) );
-      // yield localStorage.setItem('token', data.data.data.token);
-      // yield put(signUpSuccess(data));
-      // yield put(setModal(true));
-      // yield put(setLoading(false));
-   
-    
-    
+    const object = data.data.data; 
+    if (object
+    ) {
+      yield localStorage.setItem('user', JSON.stringify(object) );
+      yield localStorage.setItem('token', data.data.data.token);
+      yield put(signUpSuccess(object));
+      yield put(setModal(true));
+      yield put(setLoading(false));
+      yield put(portal(true))
+    } 
+    else {
+     
+    }
+     
   }
   catch (err) {
       yield put(setErrors([{message: err.message }]));
@@ -35,15 +39,10 @@ export function* onSignUpStart() {
 
 export function* setSignInStart({payload}) {
   try{
-    const data = yield axios({
-      method: 'post',
-      url: 'https://api.involveteacher.space/v2/login',
-      data: payload
-    });
-
-    const object = data.data.data;
-   
-    if (object) {
+  const data = yield loginUser(payload);
+     
+    if ( data.data.data ) {
+      const object = data.data.data;
       yield localStorage.setItem('user', JSON.stringify(object) );
       yield localStorage.setItem('token', object.auth.token);
     
@@ -53,9 +52,10 @@ export function* setSignInStart({payload}) {
       yield put(setErrors([{message: data.data.message}]));
       yield put(setLoading(false));
     }
+      
+    
   
-  }
-  catch (err) {
+  } catch (err) {
       yield put(setErrors([{message: err.message}]));
       yield put(setLoading(false));
   };
@@ -71,7 +71,7 @@ try{
     yield localStorage.removeItem('user');
     yield put(signOutSuccess());
 } catch(err) {
-  console.error(err.message);
+  
 }
 }
 

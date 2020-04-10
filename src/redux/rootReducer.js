@@ -9,7 +9,7 @@ import storage  from "redux-persist/lib/storage";
 const persistConfig = {
     key: "root",
     storage,
-    whitelist: [topics_reducer]
+    whitelist: ["topics", "auth"]
 }
 
 //  export const authFilter = createBlacklistFilter(

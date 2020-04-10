@@ -1,14 +1,13 @@
 import axios from "axios";
 
-export const registerUser = (data) => {
-    axios({
+export const registerUser = (data) =>  axios({
         method: 'post',
-        url: 'https://api.involveteacher.space/v2/register',
+        url: 'https://api.involveteacher.space/public/v2/register',
         data
-      }).then((res => {
-         console.log(res.data.data);
-      }))
-      .catch(err => {
-         console.log(err);
       })
-};
+
+export const loginUser = (data) =>  axios({
+   method: 'post',
+   url: 'https://api.involveteacher.space/public/v2/login',
+   data
+ })

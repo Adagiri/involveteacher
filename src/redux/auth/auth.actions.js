@@ -5,6 +5,11 @@ export const authToggle = (payload) => ({
     payload
 });
 
+export const portal = (payload) => ({
+    type: AuthActionTypes.PORTAL,
+    payload
+});
+
 export const setLoading = (payload) => ({
     type: AuthActionTypes.LOADING,
     payload

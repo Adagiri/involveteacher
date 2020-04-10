@@ -27,3 +27,11 @@ export const user = createSelector(
     [auth],
     (auth) => auth.user
 );
+
+export const portalStatus = createSelector(
+    [auth],
+    (auth) => auth.portal
+);
+
+
+

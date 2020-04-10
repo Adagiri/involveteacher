@@ -1,27 +1,3 @@
-import styled from 'styled-components'
-
-export const GlobalStyle = styled.div`
-
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap");
-:root {
-  --tablet: 768px;
-  --smallMonitor: 992px;
-  --largeMonitor: 1200px;
-  --font-family: 'Open Sans', sans-serif;
-}
-
-body {
-  font-family: var(--font-family) !important;
-}
-
-body ::-webkit-scrollbar {
-  width: 6px;
-}
-
-.sidey {
-  position: absolute;
-  color: green;
-}
 
 .ui.vertical.menu.sidebar-menu {
   margin-top: 40px !important;
@@ -51,5 +27,5 @@ body ::-webkit-scrollbar {
   .sidebar-menu-toggler {
     display: none !important;
   }
-}  
-`;
+}
+/*# sourceMappingURL=style.css.map */
