@@ -1,11 +1,13 @@
-import { takeLatest, all, call, put } from "redux-saga/effects";
+import { takeLatest, all, call, put, select } from "redux-saga/effects";
 import TopicActionTypes from "./topics.types";
 import { fetchTopics } from "./topics.utils";
 import {  fetchTopicsFailure, fetchTopicsSuccess } from "./topics.actions";
+import { token } from "../auth/auth.selectors";
 
-export function* setFetchTopicsStart({payload}) {
+export function* setFetchTopicsStart() {
  try{
-const data = yield fetchTopics(payload);
+   const auth_token = yield select(token);
+const data = yield fetchTopics(auth_token);
 yield put(fetchTopicsSuccess(data.data.data));
  } catch(err) {
   yield put(fetchTopicsFailure(err));

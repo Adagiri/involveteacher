@@ -1,7 +1,7 @@
 import axios from "axios";
 
- export const fetchTopics = (token) =>  axios
-      .post("https://api.involveteacher.space/public/v2/topic", {
+ export const fetchTopics = (token) => axios
+      .get("https://api.involveteacher.space/public/v2/topic", {
         headers: {
           "auth-token": token,
         },

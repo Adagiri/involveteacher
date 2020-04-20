@@ -1,11 +1,19 @@
 import React from 'react';
-import { Loader, Dimmer } from "semantic-ui-react";
-
+import { SpinnerContainer } from "./spinner.styles";
 const Spinner = () => (
-    <Dimmer active style={{background: "teal", position: "absolute", width: "100vw", height: "100vh"}}>
-    <Loader size="huge" >
-    </Loader>
-    </Dimmer>
+
+   <div>
+   <SpinnerContainer />
+   <div className="loader" >
+   <div className="face">
+     <div className="circle"></div>
+   </div>
+   <div className="face">
+     <div className="circle"></div>
+   </div>
+ </div>
+   </div>
 );
+
 
 export default Spinner;

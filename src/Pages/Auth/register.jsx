@@ -158,7 +158,7 @@ const RegisterForm = ({
   
 
   return  transitions.map(({ item, key, props}) => 
-  <animated.div style={props}>
+  <animated.div style={props} key={key}>
   <Grid
       textAlign="center"
       verticalAlign="middle"

@@ -15,6 +15,11 @@ export const setLoading = (payload) => ({
     payload
 });
 
+export const setSignOutModal = (payload) => ({
+    type: AuthActionTypes.SIGNOUT_MODAL,
+    payload
+});
+
 export const setErrors = (payload) => ({
     type: AuthActionTypes.SET_ERROR,
     payload
@@ -52,4 +57,8 @@ type: AuthActionTypes.SIGN_OUT_START
 
 export const signOutSuccess = () => ({
     type: AuthActionTypes.SIGN_OUT_SUCCESS
+});
+
+export const signOutFailure = () => ({
+    type: AuthActionTypes.SIGN_OUT_FAILURE
 });

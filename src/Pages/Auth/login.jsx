@@ -4,7 +4,6 @@ import {
   Form,
   Grid,
   Image,
-  Icon,
   Message,
   Segment,
   Item
@@ -72,7 +71,7 @@ const LoginForm = ({
   const displayError = errors =>
     errors.map((error, i) => <p key={i}>{error.message}</p>);
   return    transitions.map(({ item, key, props}) => 
-  <animated.div style={props}>
+  <animated.div style={props} key={key}>
   <Grid
       textAlign="center"
       verticalAlign="middle"

@@ -1,16 +1,20 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react';
+import React, { useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import "./dashboard.scss";
+import { signOutStart, setSignOutModal } from "../../redux/auth/auth.actions";
+import { connect } from "react-redux";
 
-const SideMenu = ({history}) => {
-    return (
-  <React.Fragment>
-  <div className="ui sidebar inverted vertical menu sidebar-menu" id="sidebar">
-  <div className="item">
-        <div className="header" onClick={() => history.push("/sample")}>Sample</div>
+const SideMenu = ({ history, setSignOutModal }) => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  
+
+  return (
+    <div className="side">
+      <div className="item">
         <div className="menu">
-          <a className="item">
+          <a className="item" onClick={() => history.push("/dashboard")}>
             <div>
               <i className="icon tachometer alternate"></i>
               Dashboard
@@ -18,13 +22,18 @@ const SideMenu = ({history}) => {
           </a>
         </div>
         <div className="menu">
-                <a className="item" href="https://digics.netlify.com" target="_blank" rel="noopener noreferrer">
-                  <div>
-                    <i className="icon home"></i>
-                    Company
-                  </div>
-                </a>
-              </div>
+          <a
+            className="item"
+            href="https://digics.netlify.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div>
+              <i className="icon home"></i>
+              Company
+            </div>
+          </a>
+        </div>
       </div>
       <div className="item">
         <div className="header">Administration</div>
@@ -34,9 +43,14 @@ const SideMenu = ({history}) => {
               <i className="cogs icon"></i>Settings
             </div>
           </a>
-          <a className="item">
+          <a className="item" onClick={() => history.push("/profile")}>
             <div>
-              <i className="progress icon"></i>Reset Progress
+              <i className="folder icon"></i>Profile
+            </div>
+          </a>
+          <a className="item" onClick={() => setSignOutModal(true)}>
+            <div>
+              <i className="sign-out icon"></i>Logout
             </div>
           </a>
         </div>
@@ -45,16 +59,16 @@ const SideMenu = ({history}) => {
       <a href="#" className="item">
         <div>
           <i className="icon chart line"></i>
-         Analytics
+          Analytics
         </div>
       </a>
 
       <a href="#" className="item">
-            <div>
-              <i className="icon calendar alternate"></i>
-              Calendar
-            </div>
-          </a>
+        <div>
+          <i className="icon calendar alternate"></i>
+          Calendar
+        </div>
+      </a>
 
       <a className="item">
         <div>
@@ -83,16 +97,16 @@ const SideMenu = ({history}) => {
           <div className="bar" style={{ width: "78%" }}></div>
           <div className="label">English</div>
         </div>
-        
+
         <div className="ui tiny orange inverted progress">
           <div className="bar" style={{ width: "38%" }}></div>
           <div className="label">Basic science</div>
         </div>
       </div>
-  </div>
-  </React.Fragment>
-     
-    );
+    </div>
+  );
 };
 
-export default withRouter(SideMenu);
+const mapStateToProps = (state) => ({});
+
+export default connect(mapStateToProps, { setSignOutModal })(withRouter(SideMenu));

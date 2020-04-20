@@ -33,5 +33,23 @@ export const portalStatus = createSelector(
     (auth) => auth.portal
 );
 
+export const signoutError = createSelector(
+    [auth],
+    (auth) => auth.signoutError
+);
+
+
+export const token = createSelector(
+    [auth],
+    (auth) => auth.token
+);
+
+export const signoutModal = createSelector(
+    [auth],
+    (auth) => auth.signoutModal
+);
+
+
+
 
 

@@ -1,7 +1,8 @@
-import { takeLatest, all, call, put } from "redux-saga/effects";
+import { takeLatest, all, call, put, select } from "redux-saga/effects";
 import AuthActionTypes from "./auth.types";
-import { setErrors, signUpSuccess, setLoading, setModal, signInSuccess, signOutSuccess, portal } from "./auth.actions";
-import { registerUser, loginUser } from "./auth.utils"
+import { setErrors, signUpSuccess, setLoading, setModal, signInSuccess, signOutSuccess, portal, signOutFailure } from "./auth.actions";
+import { registerUser, loginUser, signOut } from "./auth.utils";
+import { token } from "./auth.selectors"
 
 
 //AuthToggle__Start
@@ -10,24 +11,15 @@ export function* setSignUpStart({payload}) {
   try{
     const data = yield registerUser(payload)
      
-    const object = data.data.data; 
-    if (object
-    ) {
-      yield localStorage.setItem('user', JSON.stringify(object) );
-      yield localStorage.setItem('token', data.data.data.token);
-      yield put(signUpSuccess(object));
+      yield put(signUpSuccess(data.data.data));
       yield put(setModal(true));
       yield put(setLoading(false));
       yield put(portal(true))
-    } 
-    else {
-     
-    }
+   
      
   }
   catch (err) {
       yield put(setErrors([{message: err.message }]));
-      console.log(err)
       yield put(setLoading(false));
   };
 
@@ -42,11 +34,8 @@ export function* setSignInStart({payload}) {
   const data = yield loginUser(payload);
      
     if ( data.data.data ) {
-      const object = data.data.data;
-      yield localStorage.setItem('user', JSON.stringify(object) );
-      yield localStorage.setItem('token', object.auth.token);
     
-      yield put(signInSuccess(object));
+      yield put(signInSuccess(data.data.data));
       yield put(setLoading(false));
     } else {
       yield put(setErrors([{message: data.data.message}]));
@@ -67,11 +56,13 @@ export function* onSignInStart() {
 
 export function* setSignOutStart() {
 try{
-    yield localStorage.removeItem('token');
-    yield localStorage.removeItem('user');
-    yield put(signOutSuccess());
-} catch(err) {
+  const auth_token = yield select(token)
+  const response = yield signOut(auth_token);
   
+    yield put(signOutSuccess());
+    
+} catch(err) {
+  yield put(signOutFailure());
 }
 }
 
